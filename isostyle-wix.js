@@ -1719,6 +1719,15 @@ class IsoStyleElement extends HTMLElement {
       document.head.appendChild(st);
     }
     const root = this.attachShadow({ mode: 'open' });
+    // Inside the Wix editor (and Wix preview) show a short placeholder instead of the full tool.
+    // The editor canvas is narrow, so the full tool would stack into one tall column, and Wix keeps
+    // that tall editor height as the minimum height on the live site (leaving a big blank area).
+    if (/(^|\.)wix(studio)?\.com$/i.test(location.hostname)) {
+      root.innerHTML = '<div style="box-sizing:border-box;height:96px;display:flex;align-items:center;justify-content:center;gap:10px;'
+        + 'background:#eef1f3;border:1px dashed #9aa7ae;border-radius:10px;font:600 15px Arial,Helvetica,sans-serif;color:#33434b">'
+        + 'IsoStyle v2.5.3<span style="font-weight:400;color:#6b7a82">\u00b7 the full tool appears on the published site</span></div>';
+      return;
+    }
     root.innerHTML = '<style>' + ISOSTYLE_CSS + '</style>' + ISOSTYLE_HTML;
     isoStyleApp(this, root);
   }
