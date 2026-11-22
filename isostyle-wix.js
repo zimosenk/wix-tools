@@ -1529,7 +1529,7 @@ async function makePDF(){
   c.querySelectorAll("[font-family]").forEach(n=>{const k=Object.keys(FAMILY).find(k=>FAMILY[k]===n.getAttribute("font-family"));if(k)n.setAttribute("font-family",PDF_NAME[k])});
   c.setAttribute("width",dims.W);c.setAttribute("height",dims.H);
   await pdf.svg(c,{x:0,y:0,width:dims.W,height:dims.H});
-  pdf.setProperties({title:baseName(),creator:"IsoStyle v2.5.3"});
+  pdf.setProperties({title:baseName(),creator:"IsoStyle v2.5.4"});
   return pdf.output("arraybuffer");
 }
 async function doExport(){
@@ -1725,7 +1725,7 @@ class IsoStyleElement extends HTMLElement {
     if (/(^|\.)wix(studio)?\.com$/i.test(location.hostname)) {
       root.innerHTML = '<div style="box-sizing:border-box;height:96px;display:flex;align-items:center;justify-content:center;gap:10px;'
         + 'background:#eef1f3;border:1px dashed #9aa7ae;border-radius:10px;font:600 15px Arial,Helvetica,sans-serif;color:#33434b">'
-        + 'IsoStyle v2.5.3<span style="font-weight:400;color:#6b7a82">\u00b7 the full tool appears on the published site</span></div>';
+        + 'IsoStyle v2.5.4<span style="font-weight:400;color:#6b7a82">\u00b7 the full tool appears on the published site</span></div>';
       return;
     }
     root.innerHTML = '<style>' + ISOSTYLE_CSS + '</style>' + ISOSTYLE_HTML;
